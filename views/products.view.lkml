@@ -12,6 +12,16 @@ view: products {
     sql: ${TABLE}.brand ;;
   }
 
+  parameter: labels {
+    type: unquoted
+    allowed_value: {
+      value: "total"
+    }
+    allowed_value: {
+      value: "average"
+    }
+  }
+
   filter: testing {
     type: string
     full_suggestions: yes
@@ -48,7 +58,7 @@ view: products {
   }
 
   measure: Dynamic_label_measure{
-    label: "{{_filters['testing']}}"
+    label: "{{labels._parameter_value}}"
     type: sum
     sql: ${id} ;;
     value_format: "$#,##0"
