@@ -13,6 +13,7 @@ view: products {
   }
 
   parameter: labels {
+    hidden: yes
     type: unquoted
     allowed_value: {
       value: "total"
