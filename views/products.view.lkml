@@ -11,6 +11,12 @@ view: products {
     type: string
     sql: ${TABLE}.brand ;;
   }
+
+  filter: testing {
+    type: string
+    full_suggestions: yes
+    sql: ${brand} ;;
+  }
   dimension: category {
     type: string
     sql: ${TABLE}.category ;;
@@ -35,6 +41,14 @@ view: products {
     type: string
     sql: ${TABLE}.sku ;;
   }
+
+  measure: Dynamic_label_measure{
+    label: "{{_filters['testing']}}"
+    type: sum
+    sql: ${id} ;;
+    value_format: "$#,##0"
+  }
+
   measure: count {
     type: count
     drill_fields: [id, item_name, inventory_items.count]
