@@ -11,7 +11,7 @@
     type: looker_grid
     fields: [orders.status, order_items.count, order_items.sale_price, products.department]
     sorts: [order_items.count desc 0]
-    limit: 100
+    limit: 10
     column_limit: 50
     query_timezone: America/Cambridge_Bay
     show_view_names: false
