@@ -11,6 +11,23 @@ view: products {
     type: string
     sql: ${TABLE}.brand ;;
   }
+
+  parameter: labels {
+    hidden: yes
+    type: unquoted
+    allowed_value: {
+      value: "total"
+    }
+    allowed_value: {
+      value: "average"
+    }
+  }
+
+  filter: testing {
+    type: string
+    full_suggestions: yes
+    sql: ${brand} ;;
+  }
   dimension: category {
     type: string
     sql: ${TABLE}.category ;;
@@ -35,8 +52,16 @@ view: products {
     type: string
     sql: ${TABLE}.sku ;;
   }
+
   measure: count {
     type: count
     drill_fields: [id, item_name, inventory_items.count]
+  }
+
+  measure: Dynamic_label_measure{
+    label: "{{labels._parameter_value}}"
+    type: sum
+    sql: ${id} ;;
+    value_format: "$#,##0"
   }
 }
